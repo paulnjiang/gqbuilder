@@ -4,21 +4,16 @@ package gqbuilder
 	A simple SQL builder
 */
 
-type component interface {
-	getComponentName() string
+type element interface {
+	getElementName() string
 }
-
-// type conditionComponent interface {
-// 	component
-// 	isAndOperator() bool
-// }
 
 type baseClause struct {
-	componentName string
+	elementName string
 }
 
-func (b baseClause) getComponentName() string {
-	return b.componentName
+func (b baseClause) getElementName() string {
+	return b.elementName
 }
 
 type conditionClause struct {
@@ -44,6 +39,7 @@ type rawColumnClause struct {
 
 type fromClause struct {
 	tableName string
+	alias     string
 	baseClause
 }
 
@@ -91,6 +87,12 @@ type columnCompareCondition struct {
 	conditionClause
 }
 
+type likeCondition struct {
+	columnName string
+	like       string
+	conditionClause
+}
+
 type betweenCondition struct {
 	columnName string
 	from       interface{}
@@ -106,7 +108,7 @@ type inCondition struct {
 
 type inQueryCondition struct {
 	columnName string
-	subQuery   *query
+	subQuery   *Query
 	conditionClause
 }
 
@@ -122,11 +124,23 @@ type booleanCondition struct {
 }
 
 type existsCondition struct {
-	subQuery *query
+	subQuery *Query
 	conditionClause
 }
 
 type rawCodition struct {
 	expression string
 	conditionClause
+}
+
+type insertClause struct {
+	columns  []string
+	values   []interface{}
+	subQuery *Query
+	baseClause
+}
+
+type updateClause struct {
+	item map[string]interface{}
+	baseClause
 }

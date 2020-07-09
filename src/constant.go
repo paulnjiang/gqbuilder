@@ -4,13 +4,14 @@ package gqbuilder
 	const values
 */
 
-type varsPattern int
+type bindPattern int
 type databaseType int
 type joinType int
+type queryMethod int
 
 // Type of sql bind parameters
 const (
-	PlaceHolder varsPattern = iota // use placeholder e.g. '?'
+	PlaceHolder bindPattern = iota // use placeholder e.g. '?'
 	Naming                         // use prefix and parameter name e.g. '@parameterName'
 	Ordinal                        // use prefix and positional e.g. '$1 $2'
 )
@@ -22,6 +23,14 @@ const (
 	PostgreSQL
 	// SQLServer
 	// Oracle
+	Standard
+)
+
+const (
+	selectMethod queryMethod = iota
+	insertMethod
+	updateMethod
+	deleteMethod
 )
 
 const (
@@ -61,10 +70,10 @@ const (
 	kwNULL      string = "NULL"
 	kwAND       string = "AND"
 	kwOR        string = "OR"
-	kwAS        string = "AS"
+	kwAS        string = " AS "
 	kwSPACE     string = " "
 	kwALL       string = "*"
-	kwCOMMA     string = ","
+	kwCOMMA     string = ", "
 	kwFALSE     string = "False"
 	kwTRUE      string = "True"
 	kwHAVING    string = "HAVING"
