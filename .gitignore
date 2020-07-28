@@ -44,3 +44,7 @@ Temporary Items
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+.vscode/
+.vscode
+go.mod
