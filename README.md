@@ -8,13 +8,13 @@ Golang SQL builder(package: gqbuilder) is written by Golang, and is a simple and
 ## Setup database
 ```go
 import (
-    "gqbuilder"
+    gqb "github/bloodguns/gqbuilder"
     "database/sql"
     "fmt"
 )
 
 db := *sql.DB
-bdr := NewBuilder(gqbuilder.MySQL, db)
+bdr := gqb.NewBuilder(gqb.MySQL, db)
 ```
 
 ## Create a query
