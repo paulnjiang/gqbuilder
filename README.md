@@ -14,7 +14,7 @@ import (
 )
 
 db := *sql.DB
-bdr := gqb.NewBuilder(gqbuilder.MySQL, db)
+bdr := gqb.NewBuilder(gqb.MySQL, db)
 ```
 
 ## Create a query
